@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SGDV Tracking</title>
+<style>
+  body{font-family:system-ui,Arial;margin:16px}
+  .card{max-width:560px;margin:auto;border:1px solid #ddd;border-radius:12px;padding:16px;box-shadow:0 2px 8px #0001}
+  .row{display:flex;gap:8px;flex-wrap:wrap}
+  input,button{padding:10px;border-radius:8px;border:1px solid #bbb;flex:1}
+  .status{font-weight:600;margin-top:8px}
+  @media (max-width:480px){.card{margin:8px}}
+</style>
+<div class="card">
+  <h2>Seguimiento en tiempo real</h2>
+  <div class="row">
+    <input id="order" placeholder="Order ID"/>
+    <button onclick="go()">Seguir</button>
+  </div>
+  <pre id="out">Esperando…</pre>
+</div>
+<script>
+function go(){
+  const id = document.getElementById('order').value.trim();
+  if(!id) return;
+  const evtSource = new EventSource(`/tracking/stream/${id}`);
+  const out = document.getElementById('out'); out.textContent = '';
+  evtSource.onmessage = (e)=> out.textContent = e.data;
+}
+</script>
+</html>
