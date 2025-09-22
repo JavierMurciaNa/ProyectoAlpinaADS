@@ -39,12 +39,5 @@ public class LoadSimulation {
             });
         }
 
-        // Espera a que todos los usuarios terminen
-        latch.await();
-        long end = System.currentTimeMillis();
-
-        System.out.println("\nPrueba de carga finalizada.");
-        System.out.println("Tiempo total: " + (end - start) + " ms");
-        loadBalancer.shutdown();
-    }
+            }
 }
