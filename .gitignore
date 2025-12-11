@@ -1,0 +1,7 @@
+# IntelliJ / IDE
+.idea/
+*.iml
+
+# Carpetas de build
+target/
+out/
